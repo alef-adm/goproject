@@ -53,7 +53,7 @@ func main() {
 
 	fmt.Println(r1.b.param1)
 	fmt.Println(r1.b.param2)
-	fmt.Println(r1.c.Metod1().param1)
+	fmt.Println(r1.c.Metod1().param1, r1.c.Metod3().param1)
 	fmt.Println(r1.c.Metod1().param2)
 
 	fmt.Println("====================")

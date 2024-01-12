@@ -27,79 +27,85 @@ type Dimensions interface {
 	Width() Unit
 	Height() Unit
 }
+type dimensionCM struct {
+	len Unit
+	wid Unit
+	hei Unit
+}
+
+func (d dimensionCM) Length() Unit {
+	return d.len
+}
+func (d dimensionCM) Width() Unit {
+	return d.wid
+}
+func (d dimensionCM) Height() Unit {
+	return d.hei
+}
+func NewDimensionCM(lengh, width, height float64) *dimensionCM {
+	return &dimensionCM{
+		Unit{lengh, CM},
+		Unit{width, CM},
+		Unit{height, CM},
+	}
+}
+
+type dimensionInch struct {
+	len Unit
+	wid Unit
+	hei Unit
+}
+
+func (d dimensionInch) Length() Unit {
+	return d.len
+}
+func (d dimensionInch) Width() Unit {
+	return d.wid
+}
+func (d dimensionInch) Height() Unit {
+	return d.hei
+}
+func NewDimensionInch(len, wid, hei float64) *dimensionInch {
+	return &dimensionInch{
+		len: Unit{Value: len, T: Inch},
+		wid: Unit{Value: wid, T: Inch},
+		hei: Unit{Value: hei, T: Inch},
+	}
+}
 
 type Auto interface {
-	Brand() string
+	//	Brand() string
 	Model() string
 	Dimensions() Dimensions
 	MaxSpeed() int
 	EnginePower() int
 }
 
-type dodge struct {
-	brand       string
-	model       string
-	dimensions  Dimensions
-	maxSpeed    int
-	enginePower int
+type dodgeAuto struct {
+	mod string
+	dim Dimensions
+	max int
+	eng int
 }
 
-func (m *dodge) Brand() string {
-	return "Dodge"
+func (m dodgeAuto) Model() string {
+	return m.mod
 }
-func (m *dodge) Model() string {
-	return m.model
-}
-func (m *dodge) Dimensions() Dimensions {
-	return m.dimensions
-}
-func (m *dodge) MaxSpeed() int {
-	return m.maxSpeed
-}
-func (m *dodge) EnginePower() int {
-	return m.enginePower
-}
+func (m dodgeAuto) Dimensions() Dimensions {
 
-//func NewAutoDodge(m string, d Dimensions, max int, pow int) *dodge {
-//	return &dodge{
-//		model:       m,
-//		dimensions:  d,
-//		maxSpeed:    max,
-//		enginePower: pow,
-//	}
-//}
-
-//type bmw struct {
-//	model       string
-//	dimensions  Dimensions
-//	maxSpeed    int
-//	enginePower int
-//}
-//
-//func (b *bmw) Brand() string {
-//	return "BMW"
-//}
-//func (b *bmw) Model() string {
-//	return b.model
-//}
-//func (b *bmw) Dimensions() Dimensions {
-//	return NewDimensionCM(
-//		b.dimensions.Length().Get(CM),
-//		//b.dimensions.Width().Get(CM),
-//		//b.dimensions.Height().Get(CM),
-//	)
-//}
-//func (b *bmw) MaxSpeed() int {
-//	return b.maxSpeed
-//}
-//func (b *bmw) EnginePower() int {
-//	return b.enginePower
-//}
-//func NewAutoBMW(model string, d Dimensions, maxSpeed int, enginePower int) *bmw {
-//	return &bmw{
-//		model:       model,
-//		dimensions:  d,
-//		maxSpeed:    maxSpeed,
-//		enginePower: enginePower,
-//	}
-//}
+	return m.dim
+}
+func (m dodgeAuto) MaxSpeed() int {
+	return m.max
+}
+func (m dodgeAuto) EnginePower() int {
+	return m.eng
+}
+func NewDodgeAuto(mod string, dim Dimensions, max int, eng int) *dodgeAuto {
+	return &dodgeAuto{
+		mod: mod,
+		dim: dim,
+		max: max,
+		eng: eng,
+	}
+}

@@ -6,11 +6,7 @@ import (
 )
 
 func main() {
-	dodgeLength := auto.Unit{Value: 504, T: "CM"}
-	var dodgeLength2 auto.Dimensions
-	var dodge auto.Auto
-	dodge("")
-	dodgeLength2.Length(U)
-
-	fmt.Println(dodgeLength)
+	//	newInch := auto.NewDimensionInch(550, 165, 148)
+	charger := auto.NewDodgeAuto("Charger", auto.NewDimensionCM(550, 150, 148), 200, 300)
+	fmt.Println(charger)
 }
