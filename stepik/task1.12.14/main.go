@@ -10,10 +10,10 @@ func main() {
 		array[i] = a
 	}
 	for i := range array {
-		if array[i] > a {
-			a = array[i]
+		if i%2 == 0 {
+			fmt.Println(array[i])
 		}
 
 	}
-	fmt.Println(a)
+
 }
