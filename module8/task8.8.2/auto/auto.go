@@ -11,17 +11,6 @@ type Unit struct {
 	Value float64
 	T     UnitType
 }
-
-func (u Unit) Get(t UnitType) float64 {
-	value := u.Value
-
-	if t != u.T {
-		// сконвертировать value в заданный в параметре UnitType
-	}
-
-	return value
-}
-
 type Dimensions interface {
 	Length() Unit
 	Width() Unit
@@ -44,9 +33,9 @@ func (d dimensionCM) Height() Unit {
 }
 func NewDimensionCM(lengh, width, height float64) *dimensionCM {
 	return &dimensionCM{
-		Unit{lengh, CM},
-		Unit{width, CM},
-		Unit{height, CM},
+		len: Unit{Value: lengh, T: CM},
+		wid: Unit{Value: width, T: CM},
+		hei: Unit{Value: height, T: CM},
 	}
 }
 
@@ -74,38 +63,42 @@ func NewDimensionInch(len, wid, hei float64) *dimensionInch {
 }
 
 type Auto interface {
-	//	Brand() string
+	Brand() string
 	Model() string
 	Dimensions() Dimensions
 	MaxSpeed() int
 	EnginePower() int
 }
-
-type dodgeAuto struct {
-	mod string
-	dim Dimensions
-	max int
-	eng int
+type auto struct {
+	brand string
+	mod   string
+	dim   Dimensions
+	max   int
+	eng   int
 }
 
-func (m dodgeAuto) Model() string {
+func (m auto) Brand() string {
+	return m.brand
+}
+func (m auto) Model() string {
 	return m.mod
 }
-func (m dodgeAuto) Dimensions() Dimensions {
+func (m auto) Dimensions() Dimensions {
 
 	return m.dim
 }
-func (m dodgeAuto) MaxSpeed() int {
+func (m auto) MaxSpeed() int {
 	return m.max
 }
-func (m dodgeAuto) EnginePower() int {
+func (m auto) EnginePower() int {
 	return m.eng
 }
-func NewDodgeAuto(mod string, dim Dimensions, max int, eng int) *dodgeAuto {
-	return &dodgeAuto{
-		mod: mod,
-		dim: dim,
-		max: max,
-		eng: eng,
+func NewAuto(brand string, mod string, dim Dimensions, max int, eng int) *auto {
+	return &auto{
+		brand: brand,
+		mod:   mod,
+		dim:   dim,
+		max:   max,
+		eng:   eng,
 	}
 }

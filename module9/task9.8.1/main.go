@@ -17,6 +17,7 @@ func main() {
 		"Vasya": {"Vasya", "Vasiliev", 30, "male", 0},
 		"Petya": {"Petya", "Petrov", 31, "male", 1},
 		"Vitya": {"Vitya", "Vitin", 32, "male", 2},
+		"Serg":  {"Serg", "Sergeev", 33, "male", 3},
 	}
 	for key, value := range people {
 		c := 0
@@ -24,10 +25,10 @@ func main() {
 		if c < value.Crimes {
 			c = value.Crimes
 			k := key
-			fmt.Sprintln(k)
+			fmt.Println(k)
 
 		}
-		max(people)
+		//	fmt.Println(key, value)
 	}
 
 }
