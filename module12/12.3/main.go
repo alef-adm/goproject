@@ -11,12 +11,13 @@ func init() {
 }
 
 func main() {
-	ar := make([]int, 5)
+	ar := make([]int, 500)
 	for i := range ar {
 		ar[i] = rand.Intn(200) - 100 // ограничиваем случайное значение от [-100;100]
 	}
 
 	bubbleSort(ar)
+	fmt.Println(ar)
 	bubbleSortReversed(ar)
 	fmt.Println(ar)
 }
@@ -33,7 +34,7 @@ func bubbleSort(ar []int) {
 					c++
 				}
 			}
-			fmt.Println(ar, c)
+			//fmt.Println(ar, c)
 
 		}
 		if c == 0 {
@@ -53,7 +54,7 @@ func bubbleSortReversed(ar []int) {
 					c++
 				}
 			}
-			fmt.Println(ar, c)
+			//fmt.Println(ar, c)
 
 		}
 		if c == 0 {
