@@ -60,9 +60,6 @@ func selectionSort(ar []int) {
 
 			}
 		}
-		fmt.Println("minK=", minK, "maxK=", maxK)
-		fmt.Println("сортировка", i+1, "проход")
-		fmt.Println(ar)
 	}
 
 }
