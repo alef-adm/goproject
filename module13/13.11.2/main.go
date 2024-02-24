@@ -41,6 +41,7 @@ func (g *Graph) AddEdge(from, to int) {
 	} else {
 		//добавить ребро
 		fromVertex.adjacent = append(fromVertex.adjacent, toVertex)
+		toVertex.adjacent = append(toVertex.adjacent, fromVertex)
 	}
 }
 
@@ -66,20 +67,45 @@ func contains(s []*Vertex, k int) bool {
 
 func (g *Graph) Print() {
 	for _, v := range g.vertices {
-		fmt.Printf("\nVertex %v : %v", v.key, v.value)
+		fmt.Printf("\nВершина %v : %v", v.key, v.value)
 		for _, v := range v.adjacent {
-			fmt.Printf("\nСоседи %v ", v.key)
+			fmt.Printf("\nСосед %v ", v.key)
 		}
 	}
 	fmt.Println()
 }
 
+func (g *Graph) bfs(value int) *Vertex {
+	for i, v := range g.vertices {
+		if v.value == value {
+			return g.vertices[i]
+		}
+	}
+	return nil
+}
+
 func main() {
 	test := &Graph{}
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 15; i++ {
 		test.AddVertex(i, i+10)
 	}
 	//test.AddVertex(2, 23)
-	test.AddEdge(1, 2)
+	test.AddEdge(0, 1)
+	test.AddEdge(0, 2)
+	test.AddEdge(1, 3)
+	test.AddEdge(1, 4)
+	test.AddEdge(2, 5)
+	test.AddEdge(2, 6)
+	test.AddEdge(3, 7)
+	test.AddEdge(3, 8)
+	test.AddEdge(4, 9)
+	test.AddEdge(4, 10)
+	test.AddEdge(5, 11)
+	test.AddEdge(5, 12)
+	test.AddEdge(6, 13)
+	test.AddEdge(6, 14)
+
 	test.Print()
+	val := 18
+	fmt.Printf("\nзначение %v найдено в вершине - %v", test.bfs(val).value, test.bfs(val).key)
 }
